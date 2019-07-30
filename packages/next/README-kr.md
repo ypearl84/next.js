@@ -10,6 +10,7 @@
 ---
 
 **The below readme is the documentation for the `canary` (prerelease) branch. To view the documentation for the latest stable Next.js version visit [nextjs.org/docs](https://nextjs.org/docs).**
+**아래 문서는 `canary` (prerelease) 버전을 기준으로 작성 되었습니다. 가장 최신의 문서를 확인 하려면 [nextjs.org/docs] 에서 확인해주세요.(https://nextjs.org/docs).**
 
 ---
 
@@ -17,15 +18,15 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 <!-- https://github.com/thlorenz/doctoc -->
 
-- [How to use](#how-to-use)
-  - [Setup](#setup)
-  - [Automatic code splitting](#automatic-code-splitting)
+- [사용법](#how-to-use)
+  - [설치](#setup)
+  - [자동 코드 스플리팅](#automatic-code-splitting)
   - [CSS](#css)
     - [Built-in CSS support](#built-in-css-support)
     - [CSS-in-JS](#css-in-js)
     - [Importing CSS / Sass / Less / Stylus files](#importing-css--sass--less--stylus-files)
   - [Static file serving (e.g.: images)](#static-file-serving-eg-images)
-  - [Dynamic Routing](#dynamic-routing)
+  - [다이나믹 루팅](#dynamic-routing)
   - [Populating `<head>`](#populating-head)
   - [Fetching data and component lifecycle](#fetching-data-and-component-lifecycle)
   - [Routing](#routing)
@@ -106,17 +107,17 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## How to use
+## 사용법
 
-### Setup
+### 설치
 
-Install it:
+아래 코드를 실행하세요:
 
 ```bash
 npm install --save next react react-dom
 ```
 
-and add a script to your package.json like this:
+당신의 package.json에 아래와 같은 json script를 추가하세요:
 
 ```json
 {
@@ -128,9 +129,9 @@ and add a script to your package.json like this:
 }
 ```
 
-After that, the file-system is the main API. Every `.js` file becomes a route that gets automatically processed and rendered.
+그 뒤에, file-system 이 main API 가 됩니다. 모든 `.js` 파일들은 자동적으로 실행되고 렌더링 되는 루트가 될 것입니다.
 
-Populate `./pages/index.js` inside your project:
+`./pages/index.js` 를 당신의 프로젝트에 추가하세요:
 
 ```jsx
 function Home() {
@@ -140,18 +141,18 @@ function Home() {
 export default Home
 ```
 
-and then just run `npm run dev` and go to `http://localhost:3000`. To use another port, you can run `npm run dev -- -p <your port here>`.
+그리고 `npm run dev` 를 실행 시킨 뒤에 `http://localhost:3000` 를 확인하세요. 다른 포트를 사용하려면, 다음과 같이 실행하세요. `npm run dev -- -p <your port here>`.
 
-So far, we get:
+지금까지 우리가 얻은 건 :
 
-- Automatic transpilation and bundling (with webpack and babel)
-- Hot code reloading
-- Server rendering and indexing of `./pages/`
-- Static file serving. `./static/` is mapped to `/static/` (given you [create a `./static/` directory](#static-file-serving-eg-images) inside your project)
+- 자동적인 코드 변환과 번들링 (webpack 과 babel 을 이용)
+- 핫코드 리로딩
+- 서버 렌더링과 `./pages/` 인덱싱
+- 고정파일 서빙(Static file serving). `./static/` 은 `/static/` 로 맵핑 된다. (given you [create a `./static/` directory](#static-file-serving-eg-images) inside your project)
 
-### Automatic code splitting
+### 자동 코드 스플리팅
 
-Every `import` you declare gets bundled and served with each page. That means pages never load unnecessary code!
+당신이 선언한 모든 `import` 는 각각의 페이지에서 적용되게 된다. 그 뜻은 페이지들이 필요 없는 코드들을 절대 로드 하지 않는 다는 것!
 
 ```jsx
 import cowsay from 'cowsay-browser'
@@ -207,7 +208,7 @@ function HelloWorld() {
 export default HelloWorld
 ```
 
-Please see the [styled-jsx documentation](https://www.npmjs.com/package/styled-jsx) for more examples.
+더 많은 예제를 원한다면 [styled-jsx documentation](https://www.npmjs.com/package/styled-jsx) 를 확인하세요.
 
 #### CSS-in-JS
 
@@ -225,7 +226,7 @@ Please see the [styled-jsx documentation](https://www.npmjs.com/package/styled-j
   </ul>
 </details>
 
-It's possible to use any existing CSS-in-JS solution. The simplest one is inline styles:
+존재하는 어떠한 CSS-in_JS 솔루션을 사용할 수 있습니다. 제일 심플한 방법은 inline styles 입니다 :
 
 ```jsx
 function HiThere() {
@@ -235,11 +236,11 @@ function HiThere() {
 export default HiThere
 ```
 
-To use more sophisticated CSS-in-JS solutions, you typically have to implement style flushing for server-side rendering. We enable this by allowing you to define your own [custom `<Document>`](#custom-document) component that wraps each page.
+더 복잡하고 정교한 CSS-in-JS solutions을 사용하길 원한다면, you typically have to implement style flushing for server-side rendering. We enable this by allowing you to define your own [custom `<Document>`](#custom-document) component that wraps each page.
 
 #### Importing CSS / Sass / Less / Stylus files
 
-To support importing `.css`, `.scss`, `.less` or `.styl` files you can use these modules, which configure sensible defaults for server rendered applications.
+`.css`, `.scss`, `.less` 혹은 `.styl` 를 임포트 시키기 위해서는 files you can use these modules, which configure sensible defaults for server rendered applications.
 
 - [@zeit/next-css](https://github.com/zeit/next-plugins/tree/master/packages/next-css)
 - [@zeit/next-sass](https://github.com/zeit/next-plugins/tree/master/packages/next-sass)
@@ -255,7 +256,7 @@ To support importing `.css`, `.scss`, `.less` or `.styl` files you can use these
   </ul>
 </details>
 
-Create a folder called `static` in your project root directory. From your code you can then reference those files with `/static/` URLs:
+딩신의 프로젝트의 루트에 `static` 라는 디렉토리를 생성하세요. From your code you can then reference those files with `/static/` URLs:
 
 ```jsx
 function MyImage() {
@@ -269,9 +270,9 @@ export default MyImage
 To serve static files from the root directory you can add a folder called `public` and reference those files from the root, e.g: `/robots.txt`.
 -->
 
-_Note: Don't name the `static` directory anything else. The names can't be changed and are the only directories that Next.js uses for serving static assets._
+_Note: `static` 이라는 디렉토리 이름은 다른 곳에서 사용하지 마세요. 저 이름은 바뀔 수 없는 것이고 Next.js의 고정파일 서빙의 자산들을만을 위한 곳입니다.._
 
-### Dynamic Routing
+### 다이나믹 루팅 (Dynamic Routing)
 
 <details>
   <summary><b>Examples</b></summary>
@@ -280,9 +281,9 @@ _Note: Don't name the `static` directory anything else. The names can't be chang
   </ul>
 </details>
 
-Defining routes by using predefined paths is not always enough for complex applications, in Next.js you can add brackets to a page (`[param]`) to create a dynamic route (a.k.a. url slugs, pretty urls, et al).
+고정 패스를 사용하여 루트를 정의 하는 것은 복잡도가 높은 어플리케이션들에게는 충분 하지 않을 경우가 많습니다. Next.js 에서는 괄호를 추가하여 (`[param]`)에 동적인 루트를 생성할 수 있습니다. (a.k.a. url slugs, pretty urls, et al).
 
-Consider the following page `pages/post/[pid].js`:
+다음과 같은 페이지를 만든다고 가정해봅시다.  `pages/post/[pid].js`:
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -297,13 +298,13 @@ const Post = () => {
 export default Post
 ```
 
-Any route like `/post/1`, `/post/abc`, etc will be matched by `pages/post/[pid].js`.
-The matched path parameter will be sent as a query parameter to the page.
+`/post/1`, `/post/abc` 같은 어떤 루트라도 `pages/post/[pid].js` 와 매치 시킬 수 있습니다.
+매치 되는 패스의 파라메터는 마치 쿼리 파라메터처럼 페이지로 보내지게 됩니다. 
 
-For example, the route `/post/abc` will have the following `query` object: `{ pid: 'abc' }`.
-Similarly, the route `/post/abc?foo=bar` will have the `query` object: `{ foo: 'bar', pid: 'abc' }`.
+예를 들어서, `/post/abc` 라는 루트는 다음과 같은 `쿼리` 오브젝트를 가지게 됩니다 : `{ pid: 'abc' }`.
+유사한 예로, `/post/abc?foo=bar` 라는 루트는 다음과 같은 `쿼리` 오브젝트를 가지게 되죠: `{ foo: 'bar', pid: 'abc' }`.
 
-A `<Link>` for `/post/abc` looks like so:
+`/post/abc`로 이동하기 위한 `<Link>`는 다음과 같이 보여지게 됩니다 :
 
 ```jsx
 <Link href="/post/[pid]" as="/post/abc">
@@ -311,11 +312,11 @@ A `<Link>` for `/post/abc` looks like so:
 </Link>
 ```
 
-- `href`: the path inside `pages` directory.
-- `as`: the path that will be rendered in the browser URL bar.
+- `href`:  `pages` 패스 안에 위치한 디렉토리.
+- `as`: 브라우저 바에서 리렌더링 되어서 보여질 주소.
 
-As `href` is a filesystem path, it shouldn't change at runtime, instead, you will probably need to change `as`
-dynamically according to your needs. Here's an example to create a list of links:
+`href` 가 파일시스템의 주소로 사용되기 때문에 런타임에서는 변경되지 않고, 그 대신, 필요한 경우 `as` 의 값을 변경하여야 합니다.
+여기 링크들을 만드는 예제가 있습니다.:
 
 ```jsx
 const pids = ['id1', 'id2', 'id3'];
@@ -326,9 +327,9 @@ const pids = ['id1', 'id2', 'id3'];
 ))}
 ```
 
-> You can [read more about `<Link>` here](#with-link).
+> [더 많은 `<Link>` 예제는 여기서 확인하세요 ](#with-link).
 
-However, if a query and route param name are the same, route parameters will override the matching query params.
+그러나, if a query and route param name are the same, route parameters will override the matching query params.
 For example, `/post/abc?pid=bcd` will have the `query` object: `{ pid: 'abc' }`.
 
 > **Note**: Predefined routes take precedence over dynamic routes.
