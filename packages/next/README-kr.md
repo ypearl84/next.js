@@ -9,7 +9,6 @@
 
 ---
 
-**The below readme is the documentation for the `canary` (prerelease) branch. To view the documentation for the latest stable Next.js version visit [nextjs.org/docs](https://nextjs.org/docs).**
 **아래 문서는 `canary` (prerelease) 버전을 기준으로 작성 되었습니다. 가장 최신의 문서를 확인 하려면 [nextjs.org/docs] 에서 확인해주세요.(https://nextjs.org/docs).**
 
 ---
@@ -329,15 +328,15 @@ const pids = ['id1', 'id2', 'id3'];
 
 > [더 많은 `<Link>` 예제는 여기서 확인하세요 ](#with-link).
 
-그러나, if a query and route param name are the same, route parameters will override the matching query params.
-For example, `/post/abc?pid=bcd` will have the `query` object: `{ pid: 'abc' }`.
+그러나, 쿼리와 루트의 파라메터 이름이 같을 경우, 루트의 파라메터들은 매칭되는 쿼리의 파라메터들로 대체될 것입니다.
+예를 들면, `/post/abc?pid=bcd` 는 다음과 같은 `쿼리` 오브젝트를 가지게 됩니다. : `{ pid: 'abc' }`.
 
-> **Note**: Predefined routes take precedence over dynamic routes.
-> For example, if you have `pages/post/[pid].js` and `pages/post/create.js`, the route `/post/create` will be matched by `pages/post/create.js` instead of the dynamic route (`[pid]`).
+> **Note**: 이미 선언이 되어있는 정적 루트들의 경우 동적 루트들 보다 우선 순위를 가지게 됩니다. 
+>예를 들어, 당신이 `pages/post/[pid].js` 와 `pages/post/create.js` 라는 루트를 가지고 있다고 했을 때, `/post/create` (`[pid]`)와 매치되는 대신 `pages/post/create.js` 와 매치 될 것입니다. 
 
-> **Note**: Pages that are statically optimized by [automatic prerendering](#automatic-prerendering) will be hydrated without their route parameters provided (`query` will be empty, i.e. `{}`).
-> After hydration, Next.js will trigger an update to your application to provide the route parameters in the `query` object.
-> If your application cannot tolerate this behavior, you can opt-out of static optimization by capturing the query parameter in `getInitialProps`.
+> **Note**: [automatic prerendering](#automatic-prerendering) 에 의해 정적으로 옵티마이징된 페이지들의 경우 제공되는 루트의 파라메터들에 관계 없이 루팅 될 것입니다.(`쿼리` 는 공백이 됩니다. , i.e. `{}`).
+> 하이드레이션 작업 이후, Next.js 는 `query` 오브젝트 안에 있는 루트 파라메터를 이용하여 당신의 어플리케이션을 업데이트 시킵니다.
+> 만약 당신의 어플리케이션이 이 작업을 견뎌내지 못한다면, you can opt-out of static optimization by capturing the query parameter in `getInitialProps`.
 
 ### Populating `<head>`
 
@@ -349,7 +348,7 @@ For example, `/post/abc?pid=bcd` will have the `query` object: `{ pid: 'abc' }`.
 </ul>
 </details>
 
-We expose a built-in component for appending elements to the `<head>` of the page.
+페이지의 `<head>`에 위치에 자리할 컴포넌트를 만듭니다. 
 
 ```jsx
 import Head from 'next/head'
@@ -368,8 +367,7 @@ function IndexPage() {
 
 export default IndexPage
 ```
-
-To avoid duplicate tags in your `<head>` you can use the `key` property, which will make sure the tag is only rendered once:
+`<head>` 안에 중복 되는 태그 작성을 피하기 위해 `key` 프로퍼티를 사용할 수 있습니다. 이 태그를 통해 렌더링을 한번만 시킨다는 걸 확신 시킵니다 :
 
 ```jsx
 import Head from 'next/head'
@@ -400,7 +398,7 @@ function IndexPage() {
 export default IndexPage
 ```
 
-In this case only the second `<meta name="viewport" />` is rendered.
+이 경우에 오직 두번째 `<meta name="viewport" />` 만이 렌더링 됩니다. 
 
 _Note: The contents of `<head>` get cleared upon unmounting the component, so make sure each page completely defines what it needs in `<head>`, without making assumptions about what other pages added._
 
