@@ -932,7 +932,7 @@ export default function ActiveLink({ children, href }) {
   </ul>
 </details>
 
-If [useRouter](#useRouter) is not the best fit for you, `withRouter` can also add the same `router` object to any component, here's how to use it:
+만약 [useRouter](#useRouter) 가 당신이 정확하게 원하는게 아닌 것 같다면, `withRouter` 또한 어떠한 컴포넌트에서라도 `router` 라는 이름으로 사용할 수 있다, 여기 예제를 보자:
 
 ```jsx
 import { withRouter } from 'next/router'
@@ -955,17 +955,17 @@ export default withRouter(Page)
   </ul>
 </details>
 
-Next.js has an API which allows you to prefetch pages.
+Next.js 는 페이지를 프리패칭 할 수 있는 API 를 제공한다.
 
-Since Next.js server-renders your pages, this allows all the future interaction paths of your app to be instant. Effectively Next.js gives you the great initial download performance of a _website_, with the ahead-of-time download capabilities of an _app_. [Read more](https://zeit.co/blog/next#anticipation-is-the-key-to-performance).
+Next.js 가 당신의 페이지를 서버 사이드 렌더링 server-renders your pages, 당신의 앱의 앞으로 있을 상호작용들을 인스턴트화 시키는 것을 허용한다. Next.js 는 Effectively Next.js gives you the great initial download performance of a _website_, with the ahead-of-time download capabilities of an _app_. [Read more](https://zeit.co/blog/next#anticipation-is-the-key-to-performance).
 
-> With prefetching Next.js only downloads JS code. When the page is getting rendered, you may need to wait for the data.
+> Next.js 로 프리패칭을 할 경우 JS 코드만을 다운로드한다. 페이지가 렌더링 될 때 데이터를 위해 잠시 기다려야 할 수도 있다.
 
-> `<link rel="preload">` is used for prefetching. Sometimes browsers will show a warning if the resource is not used within 3 seconds, these warnings can be ignored as per https://github.com/zeit/next.js/issues/6517#issuecomment-469063892.
+> `<link rel="preload">` 가 프리패칭을 위해 사용되는 코드이다. 가끔씩은 브라우저들이 리소스가 3초 안에 사용되지 않으면 경고를 보낼 수도 있는데, 그런 경고들은 이 것을 사용하여 무시할 수 있다. https://github.com/zeit/next.js/issues/6517#issuecomment-469063892.
 
 #### With `<Link>`
 
-`<Link>` will automatically prefetch pages in the background as they appear in the view. If certain pages are rarely visited you can manually set `prefetch` to `false`, here's how:
+`<Link>` 는 뷰에 보여지는 즉시 페이지를 자동적으로 백그라운드에서 프리패칭 시킨다. 만약 잘 접속되지 않는 특정한 페이지들이 있다면 수동으로  `prefetch` 를 `false` 로 셋팅 할 수 있다, 이렇게 말이다:
 
 ```jsx
 <Link href="/about" prefetch={false}>
@@ -975,7 +975,7 @@ Since Next.js server-renders your pages, this allows all the future interaction 
 
 #### Imperatively
 
-Most prefetching needs are addressed by `<Link />`, but we also expose an imperative API for advanced usage:
+대부분의 프리패칭은 `<Link />`를 사용하여 선언이 필요하다. 하지만 우리는 더 고급된 방법으로 명령형(imperative) API를 쓸 수 있다:
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -995,7 +995,7 @@ export default function MyLink() {
 }
 ```
 
-`router` methods should be only used inside the client side of your app though. In order to prevent any error regarding this subject use the imperatively `prefetch` method in the `useEffect()` hook:
+`router` 메소드들은 오직 당신의 앱에 클라이언트 단에서만 사용되야 하긴 하지만.  `useEffect()` 안에 명령적인 `prefetch` 를 사용해서 이 주제에 관한 어떠한 에러라도 예방 할 수 있다:
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -1017,7 +1017,7 @@ export default function MyLink() {
 export default withRouter(MyLink)
 ```
 
-You can also add it to the `componentDidMount()` lifecycle method when using `React.Component`:
+당신은 또한 `React.Component` 를 사용할 때 `componentDidMount()` 의 라이프 사이클 메소드에 이 것을 추가할 수 있다:
 
 ```jsx
 import React from 'react'
@@ -1056,13 +1056,13 @@ export default withRouter(MyLink)
   </ul>
 </details>
 
-API routes provides a straightforward solution to build your **API** with Next.js.
-Start by creating the `api/` folder inside the `./pages/` folder.
+API 라우터들은 당신이 Next.js 를 사용하여 **API**를 만들 수 있도록 직관적인 해결법들을 제공한다. 
+`./pages/` 폴더 안에 `api/` 를 만드는 것부터 시작한다.
 
-Every file inside `./pages/api` is mapped to `/api/*`.
-For example, `./pages/api/posts.js` is mapped to the route `/api/posts`.
+`./pages/api` 안의 모든 파일은 `/api/*` 로 맵핑된다.
+예를 들어서, `./pages/api/posts.js` 는 `/api/posts` 라는 라우터로 맵핑된다.
 
-Here's an example API route file:
+여기 API 루트 예제 파일이 있다:
 
 ```js
 export default (req, res) => {
@@ -1086,7 +1086,7 @@ export default (req: NextApiRequest, res: NextApiResponse) => {
 }
 ```
 
-To handle different HTTP methods for API calls you can access `req.method` in your resolver function:
+API 호출을 위한 다른 HTTP 메소드를 다루기 위해서는 리졸버(resolver) 함수의 `req.method` 에 접근할 수 있다: 
 
 ```js
 export default (req, res) => {
@@ -1099,16 +1099,15 @@ export default (req, res) => {
 ```
 
 > **Note**: API Routes [do not specify CORS headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS), so they'll be **same-origin only** by default.
-> You can customize this behavior by wrapping your export with CORS middleware.
-> We provide an [example of this below](#api-middlewares).
+> CORS 미들웨어를 사용하여 You can customize this behavior by wrapping your export with CORS middleware.
+> 아래의 [예제](#api-middlewares)를 통해 확인할 수 있다.
 
-API Routes do not increase your client-side bundle size. They are server-side only bundles.
+API 루트들은 당신의 클라이언트단 번들 크기를 증가시키지 않는다. 그 것들은 서버단에서만 속한 번들들이다.
 
-#### Dynamic routes support
+#### 동적 루트 지원 
 
-API pages support [dynamic routing](#dynamic-routing), so you can use all benefits mentioned already above.
-
-Consider the following page `./pages/api/post/[pid].js`, here is how you get parameters inside the resolver method:
+API 페이지들은 [동적 라우팅](#dynamic-routing)을 지원한다, 그러므로 당신은 위에 언급된 모든 기능들을 사용할 수 있다.
+`./pages/api/post/[pid].js` 라는 페이지를 봤을 때, 리졸버 메소드 안에서 파라메터를 얻는 방법은 다음과 같다: 
 
 ```js
 export default (req, res) => {
@@ -1120,14 +1119,16 @@ export default (req, res) => {
 }
 ```
 
-#### API Middlewares
+#### API 미들웨어
 
-API routes provides built in middlewares which parse the incoming `req`.
-Those middlewares are:
+API 루트는 `req` 로 분석되는 미들웨어 provides built in middlewares which parse the incoming `req`.
+다음과 같은 미들웨어들이다:
 
-- `req.cookies` - an object containing the cookies sent by the request. Defaults to `{}`
-- `req.query` - an object containing the [query string](https://en.wikipedia.org/wiki/Query_string). Defaults to `{}`
-- `req.body` - an object containing the body parsed by `content-type`, or `null` if no body is sent
+- `req.cookies` - 쿠키를 포함하고 있는 오브젝트 an object containing the cookies sent by the request. 기본값은 `{}`
+- `req.query` - [쿼리 스트링](https://en.wikipedia.org/wiki/Query_string)을 포함하고 있는 오브젝트. 기본값은 `{}`
+- `req.body` - an object containing the body parsed by `content-type`, 또는 바디가 없을 경우에 `null` 
+
+바디 파싱은 `1mb` 로 기본적으로는 제한된 크기 내에서 가능하다.
 
 Body parsing is enabled by default with a size limit of `1mb` for the parsed body.
 You can opt-out of automatic body parsing if you need to consume it as a `Stream`:
@@ -1145,7 +1146,7 @@ export const config = {
 }
 ```
 
-You can adjust size of parsed body by adding `sizeLimit` key to `bodyParser`, supported values are by [bytes](https://github.com/visionmedia/bytes.js) library.
+`bodyParser` 안에 `sizeLimit` 를 추가하면 파스된 바디의 크기를 조절할 수 있다. 단위는 [bytes](https://github.com/visionmedia/bytes.js) 라이브러리로 지원된다. 
 
 ```js
 // ./pages/api/my-endpoint.js
@@ -1162,11 +1163,11 @@ export const config = {
 }
 ```
 
-As an added bonus, you can also use any [Micro](https://github.com/zeit/micro) compatible [middleware](https://github.com/amio/awesome-micro)!
+추가적으로,  [middleware](https://github.com/amio/awesome-micro) 와 호환되는 [Micro](https://github.com/zeit/micro) 는 모두 다 사용할 수 있다!
 
-For example, [configuring CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) for your API endpoint can be done leveraging `micro-cors`.
+예를 들면, API 의 엔드포인트는  [configuring CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) for your API endpoint can be done leveraging `micro-cors`.
 
-First, install `micro-cors`:
+첫번째로, `micro-cors` 설치하자:
 
 ```bash
 npm i micro-cors
@@ -1174,7 +1175,7 @@ npm i micro-cors
 yarn add micro-cors
 ```
 
-Then, import `micro-cors` and [configure it](https://github.com/possibilities/micro-cors#readme). Finally, wrap your exported function in the middleware:
+그리고 `micro-cors` 임포트 시킨 뒤 [config에 추가한다](https://github.com/possibilities/micro-cors#readme). 마지막으로, 미들웨어 안에서 export 시킬 함수를 감싼다:
 
 ```js
 import Cors from 'micro-cors'
@@ -1190,9 +1191,9 @@ function Endpoint(req, res) {
 export default cors(Endpoint)
 ```
 
-#### Helper Functions
+#### 헬퍼 함수 
 
-We're providing a set of Express.js-like methods to improve the developer experience and increase the speed of creating new API endpoints:
+우리는 개발자의 경험과 API 엔드포인트 생성의 속도를 향상 시키기 위해 Express.js 같은 메소드들을 제공한다:
 
 ```js
 export default (req, res) => {
@@ -1200,9 +1201,9 @@ export default (req, res) => {
 }
 ```
 
-- `res.status(code)` - a function to set the status code. `code` must be a valid [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
-- `res.json(json)` - Sends a `JSON` response. `json` must be a valid `JSON` object
-- `res.send(body)` - Sends the HTTP response. `body` can be a `string`, an `object` or a `Buffer`
+- `res.status(code)` - status 코드를 셋팅 할 수 있는 함수. `code` must be a valid [HTTP status code](https://en.wikipedia.org/wiki/List_of_HTTP_status_codes)
+- `res.json(json)` - `JSON` 응답을 보낸다. `json` 은 `JSON` 오브젝트 형태여야 한다.
+- `res.send(body)` - HTTP 응답을 보낸다. `body`는 `string`, `object` 또는 `Buffer` 형이 될 수 있다.
 
 ### Custom server and routing
 
@@ -1218,9 +1219,9 @@ export default (req, res) => {
   </ul>
 </details>
 
-Typically you start your next server with `next start`. It's possible, however, to start a server 100% programmatically in order to customize routes, use route patterns, etc.
+보통 당신은 next 서버를 `next start` 사용해서 시작할 것이다. 그래도 되지만 커스터마이징된 루트를 가진 서버를 100% 프로그래밍 된대로 시작하려면 루트 패턴이나 다른 걸 사용한다.
 
-When using a custom server with a server file, for example called `server.js`, make sure you update the scripts key in `package.json` to:
+서버 파일들로 된 커스터마이징된 서버를 사용할 때는, 예를 들어서 `server.js` 같은 것들,  `package.json` 안에 스크립트 키를 업데이트 해야 한다는 것을 명심하자:
 
 ```json
 {
@@ -1232,7 +1233,7 @@ When using a custom server with a server file, for example called `server.js`, m
 }
 ```
 
-This example makes `/a` resolve to `./pages/b`, and `/b` resolve to `./pages/a`:
+이 예제는 `/a` 를 `./pages/b` 로 변환시키고 , `/b` 를 `./pages/a` 로 변환 시킨다:
 
 ```js
 // This file doesn't go through babel or webpack transformation.
@@ -1267,26 +1268,25 @@ app.prepare().then(() => {
 })
 ```
 
-The `next` API is as follows:
+`next` API 는 다음과 같다:
 
 - `next(opts: object)`
 
-Supported options:
+제공되는 옵션들:
 
 - `dev` (`bool`) whether to launch Next.js in dev mode - default `false`
 - `dir` (`string`) where the Next project is located - default `'.'`
 - `quiet` (`bool`) Hide error messages containing server information - default `false`
 - `conf` (`object`) the same object you would use in `next.config.js` - default `{}`
 
-Then, change your `start` script to `NODE_ENV=production node server.js`.
+그리고, `start` 스크립트를 `NODE_ENV=production node server.js` 로 변경한다.
 
 #### Disabling file-system routing
 
-By default, `Next` will serve each file in `/pages` under a pathname matching the filename (eg, `/pages/some-file.js` is served at `site.com/some-file`.
+기본 값으로는 `Next` 는 `/pages` 안에 있는 각각의 파일들을 파일 네임에 매칭 시켜 경로를 지정시켜 준다. (eg, `/pages/some-file.js` 는 `site.com/some-file` 로 연결된다.
 
-If your project uses custom routing, this behavior may result in the same content being served from multiple paths, which can present problems with SEO and UX.
-
-To disable this behavior & prevent routing based on files in `/pages`, simply set the following option in your `next.config.js`:
+만약 당신의 프로젝트가 커스터마이징 된 라우팅을 사용한다면, 이 행위는 하나의 컨텐츠를 여러 개의 경로로 연결시킬 수도 있기 때문에 SEO 나 UX에 문제를 야기할 수 있다.
+라우팅 베이스가 되는 `/pages` 안에서 이 행위를 막거나 방지하려면 단순히 `next.config.js` 의 옵션을 변경해주면 된다:
 
 ```js
 // next.config.js
@@ -1295,16 +1295,17 @@ module.exports = {
 }
 ```
 
-Note that `useFileSystemPublicRoutes` simply disables filename routes from SSR; client-side routing may still access those paths. If using this option, you should guard against navigation to routes you do not want programmatically.
+Note that `useFileSystemPublicRoutes` 는 간단하게 SSR 의 파일네임 루트들을 무력화 시킨다; 클라이언트 단의 라우팅은 여전히 저 경로들을 접근 할 수 있을 수도 있다. 만약에 이 옵션을 사용하게 된다면,  you should guard against navigation to routes you do not want programmatically.
 
+당신은 클라이언트 단의 라우터 또한 설정을 변경하고자 할 수 있는데
 You may also wish to configure the client-side Router to disallow client-side redirects to filename routes; please refer to [Intercepting `popstate`](#intercepting-popstate).
 
 #### Dynamic assetPrefix
 
-Sometimes we need to set the `assetPrefix` dynamically. This is useful when changing the `assetPrefix` based on incoming requests.
-For that, we can use `app.setAssetPrefix`.
+가끔씩은 `assetPrefix`를 동적으로 셋팅할 필요가 있다. 호출받는 리퀘스트의 `assetPrefix`를 바꿀 때 유용한 것들이 있다.
+그 것을 위해서 우리는 `app.setAssetPrefix`를 사용한다.
 
-Here's an example usage of it:
+사용하는 :
 
 ```js
 const next = require('next')
@@ -1345,13 +1346,13 @@ app.prepare().then(() => {
   </ul>
 </details>
 
-Next.js supports ES2020 [dynamic `import()`](https://github.com/tc39/proposal-dynamic-import) for JavaScript.
-With that, you could import JavaScript modules (inc. React Components) dynamically and work with them.
+Next.js 는 자바스크립트를 위해 ES2020 [dynamic `import()`](https://github.com/tc39/proposal-dynamic-import) 를 지원한다.
+그것을 위해서 JavaScript 모듈을 (inc. React Components) 동적으로 임포트 시켜서 사용할 수 있다. 
 
-You can think dynamic imports as another way to split your code into manageable chunks.
-Since Next.js supports dynamic imports with SSR, you could do amazing things with it.
+당신은 동적 임포트를 당신의 코드를 알맞은 양으로 쪼개는 또 다른 방식이라고 생각해도 된다. 
 
-Here are a few ways to use dynamic imports.
+Since Next.js 가 SSR 를 통한 동적 임포트를 제공하기 때문에 이런 멋진 것도 할 수 있다.
+동적 임포트를 하는 몇가지 방법들을 보자.
 
 #### Basic Usage (Also does SSR)
 
@@ -1425,7 +1426,7 @@ function Home() {
 export default Home
 ```
 
-#### With No SSR
+#### SSR 없이 하기
 
 ```jsx
 import dynamic from 'next/dynamic'
@@ -1458,14 +1459,14 @@ export default Home
   </ul>
 </details>
 
-Next.js uses the `App` component to initialize pages. You can override it and control the page initialization. Which allows you to do amazing things like:
+Next.js 는 `App` 컴포넌트를 페이지들을 초기화 시키는 데 사용한다. 페이지 초기화를 컨트롤 하기 위해 오버라이딩도 가능하다. 당신이 할 수 있는 멋진 것들은 다음과 같다:
 
 - Persisting layout between page changes
 - Keeping state when navigating pages
 - Custom error handling using `componentDidCatch`
 - Inject additional data into pages (for example by processing GraphQL queries)
 
-To override, create the `./pages/_app.js` file and override the App class as shown below:
+오버라이드를 위해선, `./pages/_app.js` 파일을 생성하고 아래 보이는 것과 같이 App 클래스를 오버라이드 시킨다:
 
 ```js
 import React from 'react'
@@ -1501,7 +1502,7 @@ class MyApp extends App {
 export default MyApp
 ```
 
-> **Note:** Adding a custom `getInitialProps` in App will affect [Automatic Prerendering](#automatic-prerendering)
+> **Note:** 커스터마이징된 `getInitialProps`을 App에 추가하면 [Automatic Prerendering](#automatic-prerendering) 에 영향을 끼치게 된다.
 
 ### Custom `<Document>`
 
@@ -1512,22 +1513,21 @@ export default MyApp
   </ul>
 </details>
 
-A custom `<Document>` is commonly used to augment your application's `<html>` and `<body>` tags.
-This is necessary because Next.js pages skip the definition of the surrounding document's markup.
+커스터마이징된 `<Document>` 는 보통 당신의 어플리케이션의 `<html>` 와 `<body>` 를 증가 시켰다.
+ Next.js 페이지가 도큐먼트의 마크업 주변에 선언들을 건너 뛰기 때문에 이 것은 필수적이다. 
 
-This allows you to support Server-Side Rendering for CSS-in-JS libraries like
-[styled-components](/examples/with-styled-components) or [emotion](/examples/with-emotion).
-Note, [styled-jsx](https://github.com/zeit/styled-jsx) is included in Next.js by default.
+이 것은 [styled-components](/examples/with-styled-components) or [emotion](/examples/with-emotion) 같은 CSS-in-JS 라이브러리들을 서버 사이드 렌더링 하는데 사용될 수 있도록 허용해준다. 
+참고할 것은, Next.js 에 [styled-jsx](https://github.com/zeit/styled-jsx)는 기본값으로 셋팅 되어 있다는 것.
 
-A custom `<Document>` can also include `getInitialProps` for expressing asynchronous server-rendering data requirements.
+커스터마이징 된  `<Document>` 또한 `getInitialProps` 포함한다.  for expressing asynchronous server-rendering data requirements.
 
-> **Note**: `<Document>`'s `getInitialProps` function is not called during client-side transitions,
-> nor when a page is [automatically prerendered](#automatic-prerendering).
+> **Note**: `<Document>`의 `getInitialProps` 함수는 클라이언트 단에서는 호출되지 않는다. 
+> 페이지가 [automatically prerendered](#automatic-prerendering) 될 때도 마찬가지이다.
 
-> **Note**: Make sure to check if `ctx.req` / `ctx.res` are defined in `getInitialProps`.
-> These variables will be `undefined` when a page is being statically exported for `next export` or [automatic prerendering (static optimization)](#automatic-prerendering).
+> **Note**: `getInitialProps`에 `ctx.req` / `ctx.res` 가 선언되어 있는지 꼭 확인하자.
+>  These variables will be `undefined` when a page is being statically exported for `next export` or [automatic prerendering (static optimization)](#automatic-prerendering).
 
-To use a custom `<Document>`, you must create a file at `./pages/_document.js` and extend the `Document` class:
+커스터마이징 된 `<Document>`를 사용하기 위해서는, `./pages/_document.js` 이라는 파일을 생성해야 하고 `Document` 클래스를 상속받아야 한다:
 
 ```jsx
 // _document is only rendered on the server side and not on the client side
@@ -1558,11 +1558,11 @@ class MyDocument extends Document {
 export default MyDocument
 ```
 
-All of `<Html>`, `<Head />`, `<Main />` and `<NextScript />` are required for page to be properly rendered.
+모든 `<Html>`, `<Head />`, `<Main />` 그리고 `<NextScript />` 는 정확한 페이지 렌더링을 위해 필수적이다.
 
-**Note: React-components outside of `<Main />` will not be initialised by the browser. Do _not_ add application logic here. If you need shared components in all your pages (like a menu or a toolbar), take a look at the [`<App>`](#custom-app) component instead.**
+**Note: `<Main />` 밖에 위치한 리액트-컴포넌트들은 브라우저에 의해 초기화 되지 않는다. 어플리케이션의 로직을 이 곳에 위치 시키지 _말 것_. 만약 당신이 모든 페이지들이 공유할 수 있는 컴포넌트가 필요하다면 (메뉴나 툴바 같은 것들), [`<App>`](#custom-app) 컴포넌트를 알아 보는 것이 좋다.**
 
-The `ctx` object is equivalent to the one received in all [`getInitialProps`](#fetching-data-and-component-lifecycle) hooks, with one addition:
+`ctx` 오브젝트는 모든 [`getInitialProps`](#fetching-data-and-component-lifecycle) 훅에서 받는 것들과 동등한 위치를 가진다, 그리고 하나를 더 추가하자면: 
 
 - `renderPage` (`Function`) a callback that executes the actual React rendering logic (synchronously). It's useful to decorate this function in order to support server-rendering wrappers like Aphrodite's [`renderStatic`](https://github.com/Khan/aphrodite#server-side-rendering).
 
