@@ -110,13 +110,13 @@
 
 ### 설치
 
-아래 코드를 실행하세요:
+아래 코드를 실행한다:
 
 ```bash
 npm install --save next react react-dom
 ```
 
-당신의 package.json에 아래와 같은 json script를 추가하세요:
+당신의 package.json에 아래와 같은 json script를 추가한다:
 
 ```json
 {
@@ -128,9 +128,9 @@ npm install --save next react react-dom
 }
 ```
 
-그 뒤에, file-system 이 main API 가 됩니다. 모든 `.js` 파일들은 자동적으로 실행되고 렌더링 되는 루트가 될 것입니다.
+그 뒤에, file-system 이 main API 가 된다. 모든 `.js` 파일들은 자동적으로 실행되고 렌더링 되는 루트가 될 것이다.
 
-`./pages/index.js` 를 당신의 프로젝트에 추가하세요:
+`./pages/index.js` 를 당신의 프로젝트에 추가하자:
 
 ```jsx
 function Home() {
@@ -140,7 +140,7 @@ function Home() {
 export default Home
 ```
 
-그리고 `npm run dev` 를 실행 시킨 뒤에 `http://localhost:3000` 를 확인하세요. 다른 포트를 사용하려면, 다음과 같이 실행하세요. `npm run dev -- -p <your port here>`.
+그리고 `npm run dev` 를 실행 시킨 뒤에 `http://localhost:3000` 를 확인하세요. 다른 포트를 사용하려면, 다음과 같이 실행한다. `npm run dev -- -p <your port here>`.
 
 지금까지 우리가 얻은 건 :
 
@@ -207,7 +207,7 @@ function HelloWorld() {
 export default HelloWorld
 ```
 
-더 많은 예제를 원한다면 [styled-jsx documentation](https://www.npmjs.com/package/styled-jsx) 를 확인하세요.
+더 많은 예제를 원한다면 [styled-jsx documentation](https://www.npmjs.com/package/styled-jsx) 를 확인한다.
 
 #### CSS-in-JS
 
@@ -225,7 +225,7 @@ export default HelloWorld
   </ul>
 </details>
 
-존재하는 어떠한 CSS-in_JS 솔루션을 사용할 수 있습니다. 제일 심플한 방법은 inline styles 입니다 :
+존재하는 어떠한 CSS-in_JS 솔루션을 사용할 수 있습니다. 제일 심플한 방법은 inline styles 이다 :
 
 ```jsx
 function HiThere() {
@@ -255,7 +255,7 @@ export default HiThere
   </ul>
 </details>
 
-딩신의 프로젝트의 루트에 `static` 라는 디렉토리를 생성하세요. From your code you can then reference those files with `/static/` URLs:
+딩신의 프로젝트의 루트에 `static` 라는 디렉토리를 생성한다. From your code you can then reference those files with `/static/` URLs:
 
 ```jsx
 function MyImage() {
@@ -269,7 +269,7 @@ export default MyImage
 To serve static files from the root directory you can add a folder called `public` and reference those files from the root, e.g: `/robots.txt`.
 -->
 
-_Note: `static` 이라는 디렉토리 이름은 다른 곳에서 사용하지 마세요. 저 이름은 바뀔 수 없는 것이고 Next.js의 고정파일 서빙의 자산들을만을 위한 곳입니다.._
+_Note: `static` 이라는 디렉토리 이름은 다른 곳에서 사용하지 말 것. 저 이름은 바뀔 수 없는 것이고 Next.js의 고정파일 서빙의 자산들을만을 위한 곳이다.._
 
 ### 다이나믹 루팅 (Dynamic Routing)
 
@@ -280,9 +280,9 @@ _Note: `static` 이라는 디렉토리 이름은 다른 곳에서 사용하지 �
   </ul>
 </details>
 
-고정 패스를 사용하여 루트를 정의 하는 것은 복잡도가 높은 어플리케이션들에게는 충분 하지 않을 경우가 많습니다. Next.js 에서는 괄호를 추가하여 (`[param]`)에 동적인 루트를 생성할 수 있습니다. (a.k.a. url slugs, pretty urls, et al).
+고정 패스를 사용하여 루트를 정의 하는 것은 복잡도가 높은 어플리케이션들에게는 충분 하지 않을 경우가 많다. Next.js 에서는 괄호를 추가하여 (`[param]`)에 동적인 루트를 생성할 수 있다. (a.k.a. url slugs, pretty urls, et al).
 
-다음과 같은 페이지를 만든다고 가정해봅시다.  `pages/post/[pid].js`:
+다음과 같은 페이지를 만든다고 가정해본다.  `pages/post/[pid].js`:
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -297,13 +297,13 @@ const Post = () => {
 export default Post
 ```
 
-`/post/1`, `/post/abc` 같은 어떤 루트라도 `pages/post/[pid].js` 와 매치 시킬 수 있습니다.
-매치 되는 패스의 파라메터는 마치 쿼리 파라메터처럼 페이지로 보내지게 됩니다. 
+`/post/1`, `/post/abc` 같은 어떤 루트라도 `pages/post/[pid].js` 와 매치 시킬 수 있다.
+매치 되는 패스의 파라메터는 마치 쿼리 파라메터처럼 페이지로 보내지게 된다. 
 
-예를 들어서, `/post/abc` 라는 루트는 다음과 같은 `쿼리` 오브젝트를 가지게 됩니다 : `{ pid: 'abc' }`.
-유사한 예로, `/post/abc?foo=bar` 라는 루트는 다음과 같은 `쿼리` 오브젝트를 가지게 되죠: `{ foo: 'bar', pid: 'abc' }`.
+예를 들어서, `/post/abc` 라는 루트는 다음과 같은 `쿼리` 오브젝트를 가지게 된다 : `{ pid: 'abc' }`.
+유사한 예로, `/post/abc?foo=bar` 라는 루트는 다음과 같은 `쿼리` 오브젝트를 가지게 된다: `{ foo: 'bar', pid: 'abc' }`.
 
-`/post/abc`로 이동하기 위한 `<Link>`는 다음과 같이 보여지게 됩니다 :
+`/post/abc`로 이동하기 위한 `<Link>`는 다음과 같이 보여지게 된다 :
 
 ```jsx
 <Link href="/post/[pid]" as="/post/abc">
@@ -314,8 +314,8 @@ export default Post
 - `href`:  `pages` 패스 안에 위치한 디렉토리.
 - `as`: 브라우저 바에서 리렌더링 되어서 보여질 주소.
 
-`href` 가 파일시스템의 주소로 사용되기 때문에 런타임에서는 변경되지 않고, 그 대신, 필요한 경우 `as` 의 값을 변경하여야 합니다.
-여기 링크들을 만드는 예제가 있습니다.:
+`href` 가 파일시스템의 주소로 사용되기 때문에 런타임에서는 변경되지 않고, 그 대신, 필요한 경우 `as` 의 값을 변경하여야 한다.
+여기 링크들을 만드는 예제가 있다.:
 
 ```jsx
 const pids = ['id1', 'id2', 'id3'];
@@ -326,16 +326,16 @@ const pids = ['id1', 'id2', 'id3'];
 ))}
 ```
 
-> [더 많은 `<Link>` 예제는 여기서 확인하세요 ](#with-link).
+> [더 많은 `<Link>` 예제는 여기서 확인한다 ](#with-link).
 
-그러나, 쿼리와 루트의 파라메터 이름이 같을 경우, 루트의 파라메터들은 매칭되는 쿼리의 파라메터들로 대체될 것입니다.
-예를 들면, `/post/abc?pid=bcd` 는 다음과 같은 `쿼리` 오브젝트를 가지게 됩니다. : `{ pid: 'abc' }`.
+그러나, 쿼리와 루트의 파라메터 이름이 같을 경우, 루트의 파라메터들은 매칭되는 쿼리의 파라메터들로 대체될 것이다.
+예를 들면, `/post/abc?pid=bcd` 는 다음과 같은 `쿼리` 오브젝트를 가지게 된다. : `{ pid: 'abc' }`.
 
-> **Note**: 이미 선언이 되어있는 정적 루트들의 경우 동적 루트들 보다 우선 순위를 가지게 됩니다. 
->예를 들어, 당신이 `pages/post/[pid].js` 와 `pages/post/create.js` 라는 루트를 가지고 있다고 했을 때, `/post/create` (`[pid]`)와 매치되는 대신 `pages/post/create.js` 와 매치 될 것입니다. 
+> **Note**: 이미 선언이 되어있는 정적 루트들의 경우 동적 루트들 보다 우선 순위를 가지게 된다. 
+>예를 들어, 당신이 `pages/post/[pid].js` 와 `pages/post/create.js` 라는 루트를 가지고 있다고 했을 때, `/post/create` (`[pid]`)와 매치되는 대신 `pages/post/create.js` 와 매치 될 것이다. 
 
-> **Note**: [automatic prerendering](#automatic-prerendering) 에 의해 정적으로 옵티마이징된 페이지들의 경우 제공되는 루트의 파라메터들에 관계 없이 루팅 될 것입니다.(`쿼리` 는 공백이 됩니다. , i.e. `{}`).
-> 하이드레이션 작업 이후, Next.js 는 `query` 오브젝트 안에 있는 루트 파라메터를 이용하여 당신의 어플리케이션을 업데이트 시킵니다.
+> **Note**: [automatic prerendering](#automatic-prerendering) 에 의해 정적으로 옵티마이징된 페이지들의 경우 제공되는 루트의 파라메터들에 관계 없이 루팅 될 것이다.(`쿼리` 는 공백이 된다. , i.e. `{}`).
+> 하이드레이션 작업 이후, Next.js 는 `query` 오브젝트 안에 있는 루트 파라메터를 이용하여 당신의 어플리케이션을 업데이트 시킨다.
 > 만약 당신의 어플리케이션이 이 작업을 견뎌내지 못한다면, you can opt-out of static optimization by capturing the query parameter in `getInitialProps`.
 
 ### Populating `<head>`
@@ -348,7 +348,7 @@ const pids = ['id1', 'id2', 'id3'];
 </ul>
 </details>
 
-페이지의 `<head>`에 위치에 자리할 컴포넌트를 만듭니다. 
+페이지의 `<head>`에 위치에 자리할 컴포넌트를 만든다. 
 
 ```jsx
 import Head from 'next/head'
@@ -367,7 +367,7 @@ function IndexPage() {
 
 export default IndexPage
 ```
-`<head>` 안에 중복 되는 태그 작성을 피하기 위해 `key` 프로퍼티를 사용할 수 있습니다. 이 태그를 통해 렌더링을 한번만 시킨다는 걸 확신 시킵니다 :
+`<head>` 안에 중복 되는 태그 작성을 피하기 위해 `key` 프로퍼티를 사용할 수 있다. 이 태그를 통해 렌더링을 한번만 시킨다는 걸 확신 시킨다 :
 
 ```jsx
 import Head from 'next/head'
@@ -398,11 +398,11 @@ function IndexPage() {
 export default IndexPage
 ```
 
-이 경우에 오직 두번째 `<meta name="viewport" />` 만이 렌더링 됩니다. 
+이 경우에 오직 두번째 `<meta name="viewport" />` 만이 렌더링 된다. 
 
-_Note: `<head>` 의 컨텐츠는 컴포넌트를 언마운팅 할 경우 완전히 떨어져나가므로, 각 페이지가 `<head>` 에서 필요로 하는 것을 완벽하게 정의할 것을 명심하세요, 단순히 다른 페이지들에 있는 것들로만 짐작하지 마세요._
+_Note: `<head>` 의 컨텐츠는 컴포넌트를 언마운팅 할 경우 완전히 떨어져나가므로, 각 페이지가 `<head>` 에서 필요로 하는 것을 완벽하게 정의할 것을 명심하세요, 단순히 다른 페이지들에 있는 것들로만 짐작하지 말자 ._
 
-_Note: `<title>` 과 `<meta>` 엘리멘트들은 `<Head>` 엘리멘트에 **직속** 자식으로 종속되어 있어야 합니다, 또는 `<React.Fragment>` 의 최대 한 레벨로 감싸질 수 있습니다, 그렇지 않으면 메타태그는 클라이언트 사이드의 네비게이션에서 정확하게 짚어내지 못합니다._
+_Note: `<title>` 과 `<meta>` 엘리멘트들은 `<Head>` 엘리멘트에 **직속** 자식으로 종속되어 있어야 한다, 또는 `<React.Fragment>` 의 최대 한 레벨로 감싸질 수 있다, 그렇지 않으면 메타태그는 클라이언트 사이드의 네비게이션에서 정확하게 짚어내지 못한다._
 
 ### 데이터 패칭과 컴포넌트의 라이프사이클 
 
@@ -784,24 +784,24 @@ function ReadMore() {
 export default ReadMore
 ```
 
-
+이 것은 [`<Link>` component 안의](#with-url-object) 정확히 같은 파라메터들을 사용한다. 첫 번째 파라메터 맵
 This uses the same exact parameters as [in the `<Link>` component](#with-url-object). The first parameter maps to `href` while the second parameter maps to `as` in the `<Link>` component as documented [here](#with-url-object).
 
 ##### Router Events
 
-You can also listen to different events happening inside the Router.
-Here's a list of supported events:
+당신은 또한 라우터 안에서 일어나는 많은 이벤트들을 볼 수 있다.
+여기에 지원되고 있는 이벤트의 목록이 있다:
 
-- `routeChangeStart(url)` - Fires when a route starts to change
-- `routeChangeComplete(url)` - Fires when a route changed completely
-- `routeChangeError(err, url)` - Fires when there's an error when changing routes, or a route load is cancelled
-- `beforeHistoryChange(url)` - Fires just before changing the browser's history
-- `hashChangeStart(url)` - Fires when the hash will change but not the page
-- `hashChangeComplete(url)` - Fires when the hash has changed but not the page
+- `routeChangeStart(url)` - 루트가 변경되기 시작할 때 작동
+- `routeChangeComplete(url)` - 루트의 변경이 완전히 끝났을 때 작동
+- `routeChangeError(err, url)` - 루트 변경 중 에러가 발생 했을 경우 작동, 또는 루트 변경이 취소 됐을 경우.
+- `beforeHistoryChange(url)` - 브라우저의 기록을 변경 하기 직전에 작동 
+- `hashChangeStart(url)` - 페이지가 아닌 해쉬가 변경 될 때 작동 
+- `hashChangeComplete(url)` - 페이지가 아닌 해쉬가 완전히 변경 됐을 때 작동 
 
-> Here `url` is the URL shown in the browser. If you call `Router.push(url, as)` (or similar), then the value of `url` will be `as`.
+> 여기의 `url` 이 브라우저에서 URL 로 표시 되는 값이다. 만약 당신이 `Router.push(url, as)` 를 호출할 경우 ( 또는 비슷한 어떤 것이라도 ), `url`의 값은 `as` 가 된다.
 
-Here's how to properly listen to the router event `routeChangeStart`:
+여기 라우터 이벤트 `routeChangeStart` 를 올바르게 쓰는 방법이 있다:
 
 ```js
 const handleRouteChange = url => {
@@ -811,12 +811,13 @@ const handleRouteChange = url => {
 Router.events.on('routeChangeStart', handleRouteChange)
 ```
 
-If you no longer want to listen to that event, you can unsubscribe with the `off` method:
+만약 당신이 저 이벤트를 쓰고 싶지 않다면, `off` 메소드를 사용해서 해지 할 수 있다:
 
 ```js
 Router.events.off('routeChangeStart', handleRouteChange)
 ```
 
+만약 루트 로딩이 취소 됐다면 ( 예를 들어 두 링크를 한번에 클릭하는게 성공했다고 치고 ), `routeChangeError` 가 작동할 것이다. 
 If a route load is cancelled (for example by clicking two links rapidly in succession), `routeChangeError` will fire. The passed `err` will contain a `cancelled` property set to `true`.
 
 ```js
