@@ -400,11 +400,11 @@ export default IndexPage
 
 이 경우에 오직 두번째 `<meta name="viewport" />` 만이 렌더링 됩니다. 
 
-_Note: The contents of `<head>` get cleared upon unmounting the component, so make sure each page completely defines what it needs in `<head>`, without making assumptions about what other pages added._
+_Note: `<head>` 의 컨텐츠는 컴포넌트를 언마운팅 할 경우 완전히 떨어져나가므로, 각 페이지가 `<head>` 에서 필요로 하는 것을 완벽하게 정의할 것을 명심하세요, 단순히 다른 페이지들에 있는 것들로만 짐작하지 마세요._
 
-_Note: `<title>` and `<meta>` elements need to be contained as **direct** children of the `<Head>` element, or wrapped into maximum one level of `<React.Fragment>`, otherwise the metatags won't be correctly picked up on clientside navigation._
+_Note: `<title>` 과 `<meta>` 엘리멘트들은 `<Head>` 엘리멘트에 **직속** 자식으로 종속되어 있어야 합니다, 또는 `<React.Fragment>` 의 최대 한 레벨로 감싸질 수 있습니다, 그렇지 않으면 메타태그는 클라이언트 사이드의 네비게이션에서 정확하게 짚어내지 못합니다._
 
-### Fetching data and component lifecycle
+### 데이터 패칭과 컴포넌트의 라이프사이클 
 
 <details>
   <summary><b>Examples</b></summary>
@@ -413,9 +413,9 @@ _Note: `<title>` and `<meta>` elements need to be contained as **direct** childr
   </ul>
 </details>
 
-When you need state, lifecycle hooks or **initial data population** you can export a [React.Component](https://reactjs.org/docs/react-component.html) or use a stateless function and [Hooks](https://reactjs.org/docs/hooks-intro.html).
+당신이 스테이트가 필요할 때, 라이프 사이클을 훅 하거나 **initial data population** you can export a [React.Component](https://reactjs.org/docs/react-component.html) 또는 스테이트가 필요없는 함수를 사용하고 [Hooks](https://reactjs.org/docs/hooks-intro.html).
 
-Using a stateless function:
+스테이트가 필요 없는 함수 사용: 
 
 ```jsx
 import fetch from 'isomorphic-unfetch'
@@ -433,7 +433,7 @@ Page.getInitialProps = async ({ req }) => {
 export default Page
 ```
 
-Using `React.Component`:
+`React.Component` 사용:
 
 ```jsx
 import React from 'react'
@@ -452,20 +452,20 @@ class HelloUA extends React.Component {
 export default HelloUA
 ```
 
-Notice that to load data when the page loads, we use `getInitialProps` which is an [`async`](https://zeit.co/blog/async-and-await) static method. It can asynchronously fetch anything that resolves to a JavaScript plain `Object`, which populates `props`.
+여기서 우리는 페이지가 로드 될 때 데이터를 로드하기 위해, 우리는 [`async`](https://zeit.co/blog/async-and-await) 라는 동적 메소드 `getInitialProps` 를 사용할 수 있다는 것을 확인 할 수 있다. 이것은 어떤 것이든 비동기적으로 패치하는데 It can asynchronously fetch anything that resolves to a JavaScript plain `Object`, which populates `props`.
 
-Data returned from `getInitialProps` is serialized when server rendering, similar to a `JSON.stringify`. Make sure the returned object from `getInitialProps` is a plain `Object` and not using `Date`, `Map` or `Set`.
+`getInitialProps` 로부터 받아온 데이터는 서버가 렌더링 될 때 직렬화 되는데, `JSON.stringify`와 비슷한 기능을 한다. 명심할 것은 `getInitialProps` 오브젝트로부터 돌아온 리턴 값은 순수한 `Object` 여야하지, `Date`, `Map` 또는 `Set` 같은 것들은 사용해서는 안된다. 
 
-For the initial page load, `getInitialProps` will execute on the server only. `getInitialProps` will only be executed on the client when navigating to a different route via the `Link` component or using the routing APIs.
-
-<br/>
-
-> - `getInitialProps` can **not** be used in children components. Only in `pages`.
-> - If you are using some server only modules inside `getInitialProps`, make sure to [import them properly](https://arunoda.me/blog/ssr-and-server-only-modules), otherwise, it'll slow down your app.
+페이지를 초기 로드하기 위해, `getInitialProps` 는 서버만을 작동시킬 것이다. `getInitialProps` 은 클라이언트가 `Link` 컴포넌트나 루팅 API들을 사용하여 다른 루트로 이동할 때만 실행된다.  
 
 <br/>
 
-`getInitialProps` receives a context object with the following properties:
+> - `getInitialProps` 는 자식 컴포넌트들에서 사용 될 수 **없다**. 오직 `pages` 안에서만 가능하다.
+> - 만약 당신이 `getInitialProps` 안에서 서버에서만 사용되는 모듈들을 사용 중이라면, [그들을 제대로 임포트 할 것]을 명심해야 한다.(https://arunoda.me/blog/ssr-and-server-only-modules), 그렇지 않는다면, 당신의 앱의 속도가 저하될 것이다. 
+
+<br/>
+
+`getInitialProps`는 다음의 프로퍼티들에서 컨텍스트 오브젝트들을 제공 받는다:
 
 - `pathname` - path section of URL
 - `query` - query string section of URL parsed as an object
@@ -474,11 +474,11 @@ For the initial page load, `getInitialProps` will execute on the server only. `g
 - `res` - HTTP response object (server only)
 - `err` - Error object if any error is encountered during the rendering
 
-### Routing
+### 라우팅(Routing)
 
-Next.js does not ship a routes manifest with every possible route in the application, so the current page is not aware of any other pages on the client side. All subsequent routes get lazy-loaded, for scalability sake.
+Next.js는 어플리케이션 안에서 가능한 모든 루트들을 명확하게 알고 있지 않다, 그 말은 현재 페이지는 클라이언트 사이드의 다른 어떠한 다른 페이지들도 인식하지 못한다는 소리다. 모든 이 후에 발생할 루트들은 후생성(lazy-loaded) 된다, 망할 확장성을 위해서 말이다.
 
-#### With `<Link>`
+#### `<Link>` 를 함께 사용
 
 <details>
   <summary><b>Examples</b></summary>
@@ -487,13 +487,13 @@ Next.js does not ship a routes manifest with every possible route in the applica
   </ul>
 </details>
 
-Client-side transitions between routes can be enabled via a `<Link>` component.
+클라이언트-사이드 단에서의 루트를 이용한 이동은 `<Link>` 컴포넌트를 통해 가능하다.
 
-> This component is not required for navigations to static pages that require a hard refresh, like when using [AMP](#amp-support).
+> 이 컴포넌트는 리프레쉬가 필요한 정적인 페이지로의 이동에서는 요구되지 않는다. [AMP](#amp-support) 를  사용하는 것과 같이 말이다.
 
 **Basic Example**
 
-Consider these two pages:
+아래 두 페이지를 보면:
 
 ```jsx
 // pages/index.js
@@ -542,15 +542,15 @@ function About() {
 export default About
 ```
 
-**Custom routes (using props from URL)**
+**Custom routes (URL의 props를 사용)**
 
-If you find that your use case is not covered by [Dynamic Routing](#dynamic-routing) then you can create a custom server and manually add dynamic routes.
+만약 당신이 [Dynamic Routing](#dynamic-routing)가 커버하지 못하는 케이스를 찾았다면, custom server 를 만들고 수동으로 동적 루트들을 추가 할 수 있다.
 
 Example:
 
-1. Consider you have the URL `/post/:slug`.
+1. 당신이 `/post/:slug` 라는 URL 을 가지고 있다고 가정해보자.
 
-2. You created `pages/post.js`:
+2. `pages/post.js` 를 만든다:
 
    ```jsx
    import { useRouter } from 'next/router'
@@ -565,7 +565,7 @@ Example:
    export default Post
    ```
 
-3. You add the route to `express` (or any other server) on `server.js` file (this is only for SSR). This will route the url `/post/:slug` to `pages/post.js` and provide `slug` as part of the `query` object to the page.
+3. `server.js` 에 `express` (다른 어떤 서버도 상관없다) 로 루트를 추가한다(이 부분은 SSR만을 위한 것이다). 이 것은 `/post/:slug` 를 `pages/post.js` 로 url을 루팅 시키면서 `slug` 부분을 `query` 오브젝트 처럼 페이지에 제공할 것이다.
 
    ```jsx
    server.get('/post/:slug', (req, res) => {
@@ -573,24 +573,24 @@ Example:
    })
    ```
 
-4. For client side routing, use `next/link`:
+4. 클라이언트 단의 루팅을 위해서는 `next/link` 를 사용한다:
 
    ```jsx
    <Link href="/post?slug=something" as="/post/something">
    ```
 
-   - `href`: the path inside `pages` directory
-   - `as`: the path used by your server routes
+   - `href`: `pages` 디렉토리 안의 경로
+   - `as`: 서버 단의 루트로 사용될 주소
 
-Client-side routing behaves exactly like the browser:
+클라이언트 단의 루팅은 정확히 브라우저처럼 작동한다:
 
 1. The component is fetched.
-2. If it defines `getInitialProps`, data is fetched. If an error occurs, `_error.js` is rendered.
-3. After 1 and 2 complete, `pushState` is performed and the new component is rendered.
+2. `getInitialProps`가 정의 될 경우, 데이터가 패치된다. 에러가 발생할 경우, `_error.js` 가 렌더링 된다.
+3. 1,2 번이 완료 된 후, `pushState` 가 작동하고 새로운 컴포넌트가 렌더링 된다.
 
-To inject the `pathname`, `query` or `asPath` in your component, you can use the [useRouter](#useRouter) hook, or [withRouter](#using-a-higher-order-component) for class components.
+당신의 컴포넌트에 `pathname`, `query`, `asPath` 를 심어주기 위해, [useRouter](#useRouter)hook 을 사용할 수 있다, 또는 클래스 컴포넌트를 위해 [withRouter](#using-a-higher-order-component) 를 사용.
 
-##### With URL object
+##### URL 오브젝트를 사용
 
 <details>
   <summary><b>Examples</b></summary>
@@ -599,7 +599,7 @@ To inject the `pathname`, `query` or `asPath` in your component, you can use the
   </ul>
 </details>
 
-The component `<Link>` can also receive a URL object and it will automatically format it to create the URL string.
+`<Link>` 컴포넌트는 URL 오브젝트 또한 받을 수 있고 이는 자동적으로 URL string 으로 포맷팅 된다.
 
 ```jsx
 // pages/index.js
@@ -620,11 +620,11 @@ function Home() {
 export default Home
 ```
 
-That will generate the URL string `/about?name=Zeit`, you can use every property as defined in the [Node.js URL module documentation](https://nodejs.org/api/url.html#url_url_strings_and_url_objects).
+이 것은 `/about?name=Zeit` 라는 URL string을 발생 시키게 될 것이고, [Node.js URL module documentation](https://nodejs.org/api/url.html#url_url_strings_and_url_objects)에 정의된 모든 프로퍼티를 이용할 수 있다.
 
-##### Replace instead of push url
+##### 새로운 url 을 push 하지 않고 replace 
 
-The default behaviour for the `<Link>` component is to `push` a new url into the stack. You can use the `replace` prop to prevent adding a new entry.
+`<Link>` 컴포넌트의 기본 기능은 새 url을 스택에 `push` 하는 것이다. 당신은 prop 에 `replace` 를 사용하여 스택에 새로 추가 되는 것을 방지 할 수 있다.
 
 ```jsx
 // pages/index.js
@@ -645,9 +645,9 @@ function Home() {
 export default Home
 ```
 
-##### Using a component that supports `onClick`
+##### `onClick`을 지원하는 컴포넌트 사용하기
 
-`<Link>` supports any component that supports the `onClick` event. In case you don't provide an `<a>` tag, it will only add the `onClick` event handler and won't pass the `href` property.
+`<Link>` 는 `onClick` 를 서포트 하는 모든 컴포넌트를 지원한다. `<a>` 태그를 사용하지 않는 경우에는, `onClick` 이벤트 핸들러를 추가할 뿐, `href` 프로퍼티로 이동하지 않는다.
 
 ```jsx
 // pages/index.js
@@ -667,11 +667,11 @@ function Home() {
 export default Home
 ```
 
-##### Forcing the Link to expose `href` to its child
+##### Link 가 `href` 를 자식 컴포넌트에 노출 시키도록 강요하기
 
-If child is an `<a>` tag and doesn't have a href attribute we specify it so that the repetition is not needed by the user. However, sometimes, you’ll want to pass an `<a>` tag inside of a wrapper and the `Link` won’t recognize it as a _hyperlink_, and, consequently, won’t transfer its `href` to the child. In cases like that, you should define a boolean `passHref` property to the `Link`, forcing it to expose its `href` property to the child.
+만약 자식 컴포넌트가 `<a>` 태그이고 herf 어트리뷰트를 가지고 있지 않다면 유저에 의해 반복적인 작업을 할 필요가 없다는 걸 명시 한다. 그러나, 가끔은, `<a>` 태그 안의 통과 하고 싶을 수 있는데 `Link`는 그것을 _hyperlink_ 로 인지하지 못하고, 그 결과로 인해 자식 컴포넌트의 `href`로 전이 되지 못한다. 이런 경우에는,  불리언 프로퍼티인 `passHref` 를 선언하고, 자식 컴포넌트의 `href` 프로퍼티로 노출되도록 강요할 수 있다.
 
-**Please note**: using a tag other than `a` and failing to pass `passHref` may result in links that appear to navigate correctly, but, when being crawled by search engines, will not be recognized as links (owing to the lack of `href` attribute). This may result in negative effects on your sites SEO.
+**Please note**: `a` 이 외의 다른 태그를 사용하고 `passHref` 를 패스하는 것에 실패한다면 링크로써의 이동은 정확하게 작동할 수도 있지만, 서치 엔진이 크롤링 할 경우에는 링크로 인식되지 못한다. (`href` 애트리뷰트의 부재로 인해). 이 것은 당신의 사이트들의 SEO 에 영향을 끼칠 수 있다.
 
 ```jsx
 import Link from 'next/link'
@@ -688,9 +688,9 @@ function NavLink({ href, name }) {
 export default NavLink
 ```
 
-##### Disabling the scroll changes to top on page
+##### 페이지의 top 으로 스크롤 이동 막기
 
-The default behaviour of `<Link>` is to scroll to the top of the page. When there is a hash defined it will scroll to the specific id, just like a normal `<a>` tag. To prevent scrolling to the top / hash `scroll={false}` can be added to `<Link>`:
+`<Link>`의 기본 기능은 페이지의 상단으로 스크롤을 이동하는 것이다. 만약 그 곳에 해쉬가 정의되어 있어서 특정한 id로 스크롤 한다면, 평범한 `<a>` 태그와 다를 바 없다. top / hash 로 이동하는 것을 막고자 한다면 `<Link>` 에 `scroll={false}`를 추가할 수 있다:
 
 ```jsx
 <Link scroll={false} href="/?counter=10"><a>Disables scrolling</a></Link>
@@ -707,7 +707,7 @@ The default behaviour of `<Link>` is to scroll to the top of the page. When ther
   </ul>
 </details>
 
-You can also do client-side page transitions using `next/router`:
+당신은 `next/router`를 사용하여 클라이언트 단의 페이지를 이행할 수 있다.
 
 ```jsx
 import Router from 'next/router'
@@ -725,9 +725,8 @@ export default ReadMore
 
 #### Intercepting `popstate`
 
-In some cases (for example, if using a [custom router](#custom-server-and-routing)), you may wish
-to listen to [`popstate`](https://developer.mozilla.org/en-US/docs/Web/Events/popstate) and react before the router acts on it.
-For example, you could use this to manipulate the request, or force an SSR refresh.
+어떠한 경우에는 (예를 들어 [custom router](#custom-server-and-routing) 를 사용한다고 가정했을 때), 라우터가 작동하기 전에 [`popstate`](https://developer.mozilla.org/en-US/docs/Web/Events/popstate)를 먼저 적용하고 싶을 수 있다.
+예를 들어, 리퀘스트를 조종하는데 사용 할 수도 있고, SSR 의 갱신을 강요할 수 있다.
 
 ```jsx
 import Router from 'next/router'
@@ -744,11 +743,11 @@ Router.beforePopState(({ url, as, options }) => {
 })
 ```
 
-If the function you pass into `beforePopState` returns `false`, `Router` will not handle `popstate`;
-you'll be responsible for handling it, in that case.
-See [Disabling File-System Routing](#disabling-file-system-routing).
+만약 `beforePopState`를 통과하는 함수가 `false` 를 리턴할 경우, `Router` 는 `popstate` 를 처리하지 않는다;
+이런 경우에는 이 것을 처리하는 것은 당신에게 책임이 있다. 
+다음을 보자. [Disabling File-System Routing](#disabling-file-system-routing).
 
-Above `Router` object comes with the following API:
+`Router` 보다 상위의 오브젝트는 다음과 같은 API 와 함께 한다:
 
 - `route` - `String` of the current route
 - `pathname` - `String` of the current path excluding the query string
@@ -758,11 +757,11 @@ Above `Router` object comes with the following API:
 - `replace(url, as=url)` - performs a `replaceState` call with the given url
 - `beforePopState(cb=function)` - intercept popstate before router processes the event
 
-The second `as` parameter for `push` and `replace` is an optional _decoration_ of the URL. Useful if you configured custom routes on the server.
+두번째의 `push`를 위한 `as` 파라메터는 URL 을 위한 추가적인  _장식_ 이다. 당신이 서버에 커스텀 된 루트를 사용할 경우 유용하다.
 
-##### With URL object
+##### URL object 사용
 
-You can use a URL object the same way you use it in a `<Link>` component to `push` and `replace` a URL.
+당신은 `<Link>` 컴포넌트를 URL 오브젝트가 `push` 하고 `replace` 하는 것과 같이 사용할 수 있다.
 
 ```jsx
 import Router from 'next/router'
@@ -784,6 +783,7 @@ function ReadMore() {
 
 export default ReadMore
 ```
+
 
 This uses the same exact parameters as [in the `<Link>` component](#with-url-object). The first parameter maps to `href` while the second parameter maps to `as` in the `<Link>` component as documented [here](#with-url-object).
 
