@@ -817,8 +817,7 @@ Router.events.on('routeChangeStart', handleRouteChange)
 Router.events.off('routeChangeStart', handleRouteChange)
 ```
 
-만약 루트 로딩이 취소 됐다면 ( 예를 들어 두 링크를 한번에 클릭하는게 성공했다고 치고 ), `routeChangeError` 가 작동할 것이다. 
-If a route load is cancelled (for example by clicking two links rapidly in succession), `routeChangeError` will fire. The passed `err` will contain a `cancelled` property set to `true`.
+만약 루트 로딩이 취소 됐다면 ( 예를 들어 두 링크를 한번에 클릭하는게 성공했다고 치고 ), `routeChangeError` 가 작동할 것이다. 패스된 `err` 는 `true` 값을 가진 `cancelled` 프로퍼티를 포함하고 있게 된다.
 
 ```js
 Router.events.on('routeChangeError', (err, url) => {
@@ -828,8 +827,8 @@ Router.events.on('routeChangeError', (err, url) => {
 })
 ```
 
-> **Note**: Using router events in `getInitialProps` is discouraged as it may result in unexpected behavior.<br/>
-> Router events should be registered when a component mounts (`useEffect` or `componentDidMount`/`componentWillUnmount`) or imperatively when an event happens.
+> **Note**: `getInitialProps` 안에서 라우터 이벤트를 사용하는 것은 권장되지 않는다. 예측 불가한 결과를 초래할 수 있기 때문.<br/>
+> 라우터 이벤트는 컴포넌트가 마운트 될 때나 (`useEffect` 또는 `componentDidMount`/`componentWillUnmount`) 또는 무조건 이벤트가 실행 되야 할 경우 선언되는 것을 권장한다.
 >
 > ```js
 > useEffect(() => {
@@ -853,9 +852,9 @@ Router.events.on('routeChangeError', (err, url) => {
   </ul>
 </details>
 
-Shallow routing allows you to change the URL without running `getInitialProps`. You'll receive the updated `pathname` and the `query` via the `router` prop (injected by using [`useRouter`](#useRouter) or [`withRouter`](#using-a-higher-order-component)), without losing state.
+얕은 라우팅(Shallow routing)은 `getInitialProps` 없이 URL을 변경할 수 있도록 허용해준다. 당신은 업데이트 된 `pathname` 과 `query` 를 `router` prop (injected by using [`useRouter`](#useRouter) or [`withRouter`](#using-a-higher-order-component))를 통해서 받게 된다, 스테이트는 잃지 않는다.
 
-You can do this by invoking either `Router.push` or `Router.replace` with the `shallow: true` option. Here's an example:
+당신은 이 것을 `shallow: true` 옵션을 가진 `Router.push` 또는 `Router.replace` 를 호출함으로써 행할 수 있다. 여기에 예제를 보자:  
 
 ```js
 // Current URL is "/"
@@ -864,9 +863,9 @@ const as = href
 Router.push(href, as, { shallow: true })
 ```
 
-Now, the URL is updated to `/?counter=10`. You can see the updated URL with `this.props.router.query` inside the `Component` (make sure you are using [`withRouter`](#using-a-higher-order-component) around your `Component` to inject the `router` prop).
+이제, URL 은 `/?counter=10` 로 업데이트 되었다. 당신은 `Component` (`router` prop 를 적용하기 위해 `Component` 바깥으로 [`withRouter`](#using-a-higher-order-component)를 꼭 사용할 것을 명심) 안에 `this.props.router.query` 를 통해서 업데이트 된 URL을 볼 수 있다.
 
-You can watch for URL changes via [`componentDidUpdate`](https://reactjs.org/docs/react-component.html#componentdidupdate) hook as shown below:
+당신은 [`componentDidUpdate`](https://reactjs.org/docs/react-component.html#componentdidupdate)를 통해서 URL 의 변경을 아래와 같이 확인 할 수 있다: 
 
 ```js
 componentDidUpdate(prevProps) {
@@ -880,13 +879,13 @@ componentDidUpdate(prevProps) {
 
 > NOTES:
 >
-> Shallow routing works **only** for same page URL changes. For an example, let's assume we have another page called `about`, and you run this:
+> Shallow routing 은 **오직** 같은 페이지의 URL 변경만 가능하다. 예를 들어서, 우리가 `about` 이라는 다른 페이지를 불러야 한다고 가정했을 때, 아래와 같이 실행해야 한다:
 >
 > ```js
 > Router.push('/?counter=10', '/about?counter=10', { shallow: true })
 > ```
 >
-> Since that's a new page, it'll unload the current page, load the new one and call `getInitialProps` even though we asked to do shallow routing.
+> 새로운 페이지가 되었기 때문에, 현재의 페이지는 언로드 될 것이고, 새로운 페이지가 로드 되면서 shallow routing 을 셋팅했음에도 불구하고  `getInitialProps` 를 호출하게 될 것이다. .
 
 #### useRouter
 
@@ -897,7 +896,7 @@ componentDidUpdate(prevProps) {
   </ul>
 </details>
 
-If you want to access the `router` object inside any component in your app, you can use the `useRouter` hook, here's how to use it:
+만약 당신이 당신의 앱 안에 어떠한 아무 컴포넌트에서 `router` 오브젝트를 접근하길 원한다면, `useRouter`기능을 사용할 수 있다. 바로 이렇게:
 
 ```jsx
 import { useRouter } from 'next/router'
@@ -922,9 +921,9 @@ export default function ActiveLink({ children, href }) {
 }
 ```
 
-The above `router` object comes with an API similar to [`next/router`](#imperatively).
+위의 `router` 오브젝트는 [`next/router`](#imperatively) 와 비슷한 API 기능을 가지고 있다. 
 
-#### Using a Higher Order Component
+#### 더 상위 순위를 가진 컴포넌트 사용하기  
 
 <details>
   <summary><b>Examples</b></summary>
