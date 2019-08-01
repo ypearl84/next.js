@@ -1601,7 +1601,7 @@ export default MyDocument
 
 404 또는 500 에러는 디폴트 컴포넌트인  `error.js` 를 통해 서버와 클라이언트 양쪽에서 처리된다. 오버라이드를 하고 싶을 경우, `_error.js` 을 pages 폴더에 정의해라:
 
-⚠️ `pages/_error.js` component is only used in production. In development you get an error with call stack to know where the error originated from. ⚠️
+⚠️ `pages/_error.js` 컴포넌트는 오직 production 에서만 사용된다. 개발 단계에서는 에러가 본래 났던 곳이 어딘지 알기 위해서 콜 스택으로부터 에러를 받게 된다. ⚠️
 
 ```jsx
 import React from 'react'
@@ -1628,7 +1628,7 @@ export default Error
 
 ### Reusing the built-in error page
 
-If you want to render the built-in error page you can by using `next/error`:
+만약 당신이 `next/error` 를 사용해서 빌트인 된 에러 페이지를 렌더링 하고 싶다고 가정해보자:
 
 ```jsx
 import React from 'react'
@@ -1656,15 +1656,15 @@ class Page extends React.Component {
 export default Page
 ```
 
-> If you have created a custom error page you have to import your own `_error` component from `./_error` instead of `next/error`.
+> 만약 당신이 커스터마이징된 에러 페이지를 생성했다면 `next/error` 를 대신 해서 `./_error` 로부터 당신의 고유한 `_error` 를 임포트한다.
 
-The Error component also takes `title` as a property if you want to pass in a text message along with a `statusCode`.
+에러 컴포넌트는 또한 `title`을 프로퍼티로 받는다. as a property if you want to pass in a text message along with a `statusCode`.
 
 ### Custom configuration
 
-For custom advanced behavior of Next.js, you can create a `next.config.js` in the root of your project directory (next to `pages/` and `package.json`).
+Next.js의 커스터마이징된 더 고차원적의 동작을 위해 당신은 프로젝트 디렉토리의 루트 안에 `next.config.js` 를 생성할 수 있다. ( `pages/` 와 `package.json` 과 같은 단계에 만들면 된다).
 
-Note: `next.config.js` is a regular Node.js module, not a JSON file. It gets used by the Next server and build phases, and not included in the browser build.
+Note: `next.config.js` 는 기본적은 Node.js 의 모듈이다, JSON 파일이 아니다. Next의 서버와 상태(phase)를 만드는데 쓰이지만 브라우저를 빌드하는데는 쓰이지 않는다.  
 
 ```js
 // next.config.js
@@ -1673,7 +1673,7 @@ module.exports = {
 }
 ```
 
-Or use a function:
+아니면 함수를 사용한다:
 
 ```js
 module.exports = (phase, { defaultConfig }) => {
@@ -1683,7 +1683,7 @@ module.exports = (phase, { defaultConfig }) => {
 }
 ```
 
-`phase` is the current context in which the configuration is loaded. You can see all phases here: [constants](/packages/next-server/lib/constants.ts)
+`phase` 는 설정값(configuration)들이 로드 된 현재 상태(context) 를 말한다. 모든 상태는 여기서 확인 가능하다: [constants](/packages/next-server/lib/constants.ts)
 Phases can be imported from `next/constants`:
 
 ```js
