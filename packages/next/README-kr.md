@@ -1568,10 +1568,9 @@ export default MyDocument
 
 #### Customizing `renderPage`
 
-🚧 It should be noted that the only reason you should be customizing `renderPage` is for usage with css-in-js libraries
-that need to wrap the application to properly work with server-rendering. 🚧
+🚧 서버사이드 렌더링을 제대로 하기 위해서는 당신이 `renderPage`를 커스터마이징할 이유는 오직 어플리케이션에 적용할 css-in-js 라이브러리를 사용하기 위해서 뿐이라는 걸 명심해야 한다. 🚧
 
-- It takes as argument an options object for further customization:
+- 더 많은 커스터마이징을 위해서는 아규먼트들을 옵션으로 사용한다:
 
 ```js
 import Document from 'next/document'
@@ -1600,9 +1599,9 @@ export default MyDocument
 
 ### Custom error handling
 
-404 or 500 errors are handled both client and server side by a default component `error.js`. If you wish to override it, define a `_error.js` in the pages folder:
+404 또는 500 에러는 디폴트 컴포넌트인  `error.js` 를 통해 서버와 클라이언트 양쪽에서 처리된다. 오버라이드를 하고 싶을 경우, `_error.js` 을 pages 폴더에 정의해라:
 
-⚠️ The `pages/_error.js` component is only used in production. In development you get an error with call stack to know where the error originated from. ⚠️
+⚠️ `pages/_error.js` component is only used in production. In development you get an error with call stack to know where the error originated from. ⚠️
 
 ```jsx
 import React from 'react'
