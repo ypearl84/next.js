@@ -1295,7 +1295,7 @@ module.exports = {
 }
 ```
 
-Note that `useFileSystemPublicRoutes` 는 간단하게 SSR 의 파일네임 루트들을 무력화 시킨다; 클라이언트 단의 라우팅은 여전히 저 경로들을 접근 할 수 있을 수도 있다. 만약에 이 옵션을 사용하게 된다면,  you should guard against navigation to routes you do not want programmatically.
+`useFileSystemPublicRoutes` 는 간단하게 SSR 의 파일네임 루트들을 무력화 시킨다; 클라이언트 단의 라우팅은 여전히 저 경로들을 접근 할 수 있을 수도 있다. 만약에 이 옵션을 사용하게 된다면,  you should guard against navigation to routes you do not want programmatically.
 
 당신은 클라이언트 단의 라우터 또한 설정을 변경하고자 할 수 있는데
 You may also wish to configure the client-side Router to disallow client-side redirects to filename routes; please refer to [Intercepting `popstate`](#intercepting-popstate).
@@ -1305,7 +1305,7 @@ You may also wish to configure the client-side Router to disallow client-side re
 가끔씩은 `assetPrefix`를 동적으로 셋팅할 필요가 있다. 호출받는 리퀘스트의 `assetPrefix`를 바꿀 때 유용한 것들이 있다.
 그 것을 위해서 우리는 `app.setAssetPrefix`를 사용한다.
 
-사용하는 :
+사용하는 방법은 다음과 같다 :
 
 ```js
 const next = require('next')
@@ -1525,7 +1525,7 @@ export default MyApp
 > 페이지가 [automatically prerendered](#automatic-prerendering) 될 때도 마찬가지이다.
 
 > **Note**: `getInitialProps`에 `ctx.req` / `ctx.res` 가 선언되어 있는지 꼭 확인하자.
->  These variables will be `undefined` when a page is being statically exported for `next export` or [automatic prerendering (static optimization)](#automatic-prerendering).
+>  다음 변수들은 페이지가 정적으로 익스포트 될 때 `next export` 나  [automatic prerendering (static optimization)](#automatic-prerendering)로 `undefined` 된 상태일 것이다.
 
 커스터마이징 된 `<Document>`를 사용하기 위해서는, `./pages/_document.js` 이라는 파일을 생성해야 하고 `Document` 클래스를 상속받아야 한다:
 
@@ -1564,7 +1564,7 @@ export default MyDocument
 
 `ctx` 오브젝트는 모든 [`getInitialProps`](#fetching-data-and-component-lifecycle) 훅에서 받는 것들과 동등한 위치를 가진다, 그리고 하나를 더 추가하자면: 
 
-- `renderPage` (`Function`) a callback that executes the actual React rendering logic (synchronously). It's useful to decorate this function in order to support server-rendering wrappers like Aphrodite's [`renderStatic`](https://github.com/Khan/aphrodite#server-side-rendering).
+- `renderPage` (`Function`) 는 실제 리엑트 렌더링을 하는 로직을 실행시키는 콜백이다(동기적으로). 이 것은 서버렌더링이 함수를 미의 여신 아프로디테가 감싸는 것처럼 보일 수 있게 꾸며주는데 아주 유용하다 [`renderStatic`](https://github.com/Khan/aphrodite#server-side-rendering).
 
 #### Customizing `renderPage`
 
@@ -1684,7 +1684,7 @@ module.exports = (phase, { defaultConfig }) => {
 ```
 
 `phase` 는 설정값(configuration)들이 로드 된 현재 상태(context) 를 말한다. 모든 상태는 여기서 확인 가능하다: [constants](/packages/next-server/lib/constants.ts)
-Phases can be imported from `next/constants`:
+상태들(Phases)은 `next/constants`로부터 임포트 시킬 수 있다:
 
 ```js
 const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
@@ -1703,6 +1703,7 @@ module.exports = (phase, { defaultConfig }) => {
 
 #### Setting a custom build directory
 
+당신은 커스텀된 디렉토리를 만들기 위해 특정한 이름을 사용할 수 있다. 예를 들어서, 
 You can specify a name to use for a custom build directory. For example, the following config will create a `build` folder instead of a `.next` folder. If no configuration is specified then next will create a `.next` folder.
 
 ```js
